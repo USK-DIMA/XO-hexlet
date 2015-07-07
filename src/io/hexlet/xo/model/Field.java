@@ -7,19 +7,41 @@ import java.awt.*;
 
 public class Field {
 
+    private static final int DEFAULT_FIELD_SIZE=3;
+
     private static final int MIN_COORDINATE = 0;
 
     private final Figure[][] field;
 
-    private final int filedSize;
+    private final int filedSizeX;
+
+    private final int filedSizeY;
+
+
 
     public Field(final int filedSize) {
-        this.filedSize = filedSize;
-        field = new Figure[filedSize][filedSize];
+        this(filedSize, filedSize);
     }
 
-    public int getSize() {
-        return filedSize;
+    public Field(final int filedSizeX, final int filedSizeY) {
+        if(filedSizeX<=MIN_COORDINATE | filedSizeY<=MIN_COORDINATE){
+            this.filedSizeX = DEFAULT_FIELD_SIZE;
+            this.filedSizeY = DEFAULT_FIELD_SIZE;
+        }
+        else {
+            this.filedSizeX = filedSizeX;
+            this.filedSizeY = filedSizeY;
+        }
+
+        field = new Figure[this.filedSizeX][this.filedSizeY];
+    }
+
+    public int getSizeX() {
+        return filedSizeX;
+    }
+
+    public int getSizeY() {
+        return filedSizeY;
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
@@ -37,7 +59,7 @@ public class Field {
     }
 
     private boolean checkPoint(final Point point) {
-        return checkCoordinate(point.x, field.length) && checkCoordinate(point.y, field[point.x].length);
+        return checkCoordinate(point.x, filedSizeX) && checkCoordinate(point.y, filedSizeX);
     }
 
     private boolean checkCoordinate(final int coordinate, final int maxCoordinate) {
