@@ -5,6 +5,9 @@ import io.hexlet.xo.model.exceptions.InvalidPointException;
 
 import java.awt.*;
 
+/**
+ * Игровое поле. Перед игрой надо создать поле (размер поля можно выбирать)
+ */
 public class Field {
 
     private static final int DEFAULT_FIELD_SIZE=3;
@@ -18,7 +21,11 @@ public class Field {
     private final int filedSizeY;
 
 
-
+    /**
+     *
+     * @param filedSize размер поля. Создастся поле размером filedSize*filedSize.
+     *                  Если будет значение <1, создасться поле размера DEFAULT_FIELD_SIZE*DEFAULT_FIELD_SIZE (DEFAULT_FIELD_SIZE = 3)
+     */
     public Field(final int filedSize) {
         this(filedSize, filedSize);
     }
@@ -44,6 +51,12 @@ public class Field {
         return filedSizeY;
     }
 
+    /**
+     * Возвращает фигуру, которая стоит на клетке point. null, если клетка пуста
+     * @param point
+     * @return
+     * @throws InvalidPointException срабатывает, если указана некорректная точка
+     */
     public Figure getFigure(final Point point) throws InvalidPointException {
         if (!checkPoint(point)) {
             throw new InvalidPointException();
@@ -51,6 +64,12 @@ public class Field {
         return field[point.x][point.y];
     }
 
+    /**
+     * Ставит фигуру в клетку. Если там есть уже какая-то фигнура, то она перетирается
+     * @param point
+     * @param figure
+     * @throws InvalidPointException
+     */
     public void setFigure(final Point point, final Figure figure) throws InvalidPointException {
         if (!checkPoint(point)) {
             throw new InvalidPointException();
@@ -58,10 +77,19 @@ public class Field {
         field[point.x][point.y] = figure;
     }
 
+    /**
+     * Проверка координаты клетки  на валидность. (т.е. координаты больше 0 и не выходят за пределы поля)
+     * @param point
+     * @return true, если координаты валидны
+     */
     private boolean checkPoint(final Point point) {
         return checkCoordinate(point.x, filedSizeX) && checkCoordinate(point.y, filedSizeX);
     }
 
+    /**
+     * Проверка координаты клетки  на валидность. (т.е. координаты больше 0 и не выходят за пределы поля)
+     * @return true, если координаты валидны
+     */
     private boolean checkCoordinate(final int coordinate, final int maxCoordinate) {
         return coordinate >= MIN_COORDINATE && coordinate < maxCoordinate;
     }

@@ -24,15 +24,13 @@ public class MoveControllerTest extends TestCase {
 
     @Test
     public void testApplyFigure() throws Exception {
-        MoveController moveController = new MoveController();
+        MoveController moveController = new MoveController(null);
         String[][] fieldString ={
-
                     {"X", " ", " "},
                     {" ", "O", "X"},
                     {" ", " ", " "}
-
         };
-        Field field = fieldGenerate(fieldString, FIELD_SIZE_X, FIELD_SIZE_Y);
+        Field field = fieldGenerator(fieldString, FIELD_SIZE_X, FIELD_SIZE_Y);
 
         moveController.applyFigure(field, new Point(1, 0), Figure.O);
         assertEquals(Figure.O, field.getFigure(new Point(1, 0)));

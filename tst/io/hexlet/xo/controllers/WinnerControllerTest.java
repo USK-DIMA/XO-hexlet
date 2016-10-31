@@ -18,7 +18,7 @@ public class WinnerControllerTest extends TestCase {
     @Test
     public void testGetWinner() throws Exception {
 
-        WinnerController winnerController = new WinnerController();
+        WinnerController winnerController = new WinnerController(null);
 
         String[][][] fArray = {
                 {
@@ -66,7 +66,7 @@ public class WinnerControllerTest extends TestCase {
         Figure[] resultArray={null, null, null, Figure.O, Figure.X, null, null, null};
 
         for(int i=0; i<fArray.length; i++) {
-            assertEquals(resultArray[i], winnerController.getWinner(fieldGenerate(fArray[i], FIELD_SIZE_X, FIELD_SIZE_Y)));
+            assertEquals(resultArray[i], winnerController.getWinner(fieldGenerator(fArray[i], FIELD_SIZE_X, FIELD_SIZE_Y)));
         }
     }
 
@@ -74,7 +74,7 @@ public class WinnerControllerTest extends TestCase {
     public void testGetWinnerEmptyField() throws Exception {
         final int FIELD_SIZE=3;
 
-        WinnerController winnerController = new WinnerController();
+        WinnerController winnerController = new WinnerController(null);
 
         Field field = new Field(FIELD_SIZE);
 
@@ -84,7 +84,7 @@ public class WinnerControllerTest extends TestCase {
     @Test
     public void testGetWinnerX() throws Exception {
 
-        WinnerController winnerController = new WinnerController();
+        WinnerController winnerController = new WinnerController(null);
 
         Field field;
         Figure winnerFigure = Figure.O;
@@ -95,9 +95,7 @@ public class WinnerControllerTest extends TestCase {
             for (int j = 0; j < field.getSizeY(); j++) {
                 field.setFigure(new Point(i, j), winnerFigure);
             }
-
             assertEquals(winnerFigure, winnerController.getWinner(field));
-
         }
     }
 
@@ -108,7 +106,7 @@ public class WinnerControllerTest extends TestCase {
 
         Figure winnerFigure = Figure.O;
 
-        WinnerController winnerController = new WinnerController();
+        WinnerController winnerController = new WinnerController(null);
 
         for (int j = 0; j < FIELD_SIZE_Y; j++) {
             field = new Field(FIELD_SIZE_X, FIELD_SIZE_Y);
@@ -116,9 +114,7 @@ public class WinnerControllerTest extends TestCase {
             for (int i = 0; i < field.getSizeX(); i++) {
                 field.setFigure(new Point(i, j), winnerFigure);
             }
-
             assertEquals(winnerFigure, winnerController.getWinner(field));
-
         }
     }
 
@@ -129,7 +125,7 @@ public class WinnerControllerTest extends TestCase {
 
         Figure winnerFigure = Figure.O;
 
-        WinnerController winnerController = new WinnerController();
+        WinnerController winnerController = new WinnerController(null);
 
             field = new Field(FIELD_SIZE_X, FIELD_SIZE_Y);
 
@@ -147,7 +143,7 @@ public class WinnerControllerTest extends TestCase {
 
         Figure winnerFigure = Figure.O;
 
-        WinnerController winnerController = new WinnerController();
+        WinnerController winnerController = new WinnerController(null);
 
         field = new Field(FIELD_SIZE_X, FIELD_SIZE_Y);
 

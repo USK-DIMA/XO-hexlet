@@ -1,6 +1,8 @@
 package io.hexlet.xo.model;
 
-
+/**
+ * Объект-игрок
+ */
 public class Player {
 
     private final String name;
@@ -21,4 +23,12 @@ public class Player {
         return figure;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Player)){
+            return false;
+        }
+        Player p = (Player) obj;
+        return this.name.equals(p.name) && this.figure.equals(p.figure);
+    }
 }

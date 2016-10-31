@@ -13,7 +13,7 @@ public class CurrentMoveControllerTest {
 
     @Test
     public void testCurrentMoveWhenNextMoveIsO() throws Exception {
-        final CurrentMoveController currentMoveController = new CurrentMoveController();
+        final CurrentMoveController currentMoveController = new CurrentMoveController(null);
         for (int i = 0; i < 3; i++) {
             final Field field = new Field(3);
             field.setFigure(new Point(i, 0), Figure.X);
@@ -25,7 +25,7 @@ public class CurrentMoveControllerTest {
 
     @Test
     public void testCurrentMoveWhenNextMoveIsX() throws Exception {
-        final CurrentMoveController currentMoveController = new CurrentMoveController();
+        final CurrentMoveController currentMoveController = new CurrentMoveController(null);
         for (int i = 0; i < 3; i++) {
             final Field field = new Field(3);
             field.setFigure(new Point(i, 1), Figure.O);
@@ -36,7 +36,7 @@ public class CurrentMoveControllerTest {
 
     @Test
     public void testCurrentMoveWhenNoNextMove() throws Exception {
-        final CurrentMoveController currentMoveController = new CurrentMoveController();
+        final CurrentMoveController currentMoveController = new CurrentMoveController(null);
         final Field field = new Field(3);
         field.setFigure(new Point(0, 0), Figure.O);
         field.setFigure(new Point(0, 1), Figure.X);

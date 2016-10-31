@@ -4,11 +4,23 @@ package io.hexlet.xo.controllers;
 import io.hexlet.xo.model.Field;
 import io.hexlet.xo.model.Figure;
 import io.hexlet.xo.model.exceptions.InvalidPointException;
+import io.hexlet.xo.system.Logger;
 
 import java.awt.*;
 
 public class CurrentMoveController {
 
+    Logger logger;
+
+    public CurrentMoveController(Logger logger) {
+        this.logger = logger;
+    }
+
+    /**
+     * Возвращает ту фигуру, чей сейчас ход. Если ходов нет, Возвращает null
+     * @param field поле
+     * @return
+     */
     public Figure currentMove(final Field field) {
         int countFigure = 0;
         for (int x = 0; x < field.getSizeX(); x++) {
@@ -28,8 +40,9 @@ public class CurrentMoveController {
         int countFigure = 0;
         for (int x = 0; x < field.getSizeY(); x++) {
             try {
-                if (field.getFigure(new Point(x, row)) != null)
+                if (field.getFigure(new Point(x, row)) != null) {
                     countFigure++;
+                }
             } catch (InvalidPointException e) {
                 e.printStackTrace();
             }

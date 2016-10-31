@@ -4,11 +4,23 @@ package io.hexlet.xo.controllers;
 import io.hexlet.xo.model.Field;
 import io.hexlet.xo.model.Figure;
 import io.hexlet.xo.model.exceptions.InvalidPointException;
+import io.hexlet.xo.system.Logger;
 
 import java.awt.*;
 
 public class WinnerController {
 
+    private Logger logger;
+
+    public WinnerController(Logger logger) {
+        this.logger = logger;
+    }
+
+    /**
+     * Проверка поля на наличие победителя
+     * @param field поле, которое будем проверять
+     * @return Фигуру победителя, если победитель есть, иначе null
+     */
     public Figure getWinner(final Field field) {
         try {
             for (int i = 0; i < 3; i++)
@@ -31,32 +43,32 @@ public class WinnerController {
         return null;
     }
 
-    private boolean check(final Field field, final Point currentPoint,
-                          final IPointGenerator pointGenerator) {
+
+    private boolean check(final Field field, final Point currentPoint, final IPointGenerator pointGenerator) {
         final Figure currentFigure;
         final Figure nextFigure;
         final Point nextPoint = pointGenerator.next(currentPoint);
         try {
             currentFigure = field.getFigure(currentPoint);
 
-            if (currentFigure == null)
+            if (currentFigure == null) {
                 return false;
+            }
 
             nextFigure = field.getFigure(nextPoint);
         } catch (final InvalidPointException e) {
             return true;
         }
 
-        if (currentFigure != nextFigure)
+        if (currentFigure != nextFigure) {
             return false;
+        }
 
         return check(field, nextPoint, pointGenerator);
     }
 
     private interface IPointGenerator {
-
         Point next(final Point point);
-
     }
 
 }

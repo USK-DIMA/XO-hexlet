@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class TestHelper {
 
-    public static Field fieldGenerate(String[][] figure, int fieldSizeX, int fieldSizeY) throws InvalitInputFigureException{
+    public static Field fieldGenerator(String[][] figure, int fieldSizeX, int fieldSizeY) throws InvalitInputFigureException{
 
         Field field = new Field(fieldSizeX, fieldSizeY);
 
